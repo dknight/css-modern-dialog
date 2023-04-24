@@ -6,7 +6,5 @@ In 2023, to show modal dialog, you do not need any fancy framework or library, n
 
 Also include very simple script to trap the focus.
 
----
-
 ## License
 2023 MIT
