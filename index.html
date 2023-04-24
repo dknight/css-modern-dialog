@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern accessible modal dialog without JavaScript.">
+    <title>Modern dialog</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dialog.css">
+
+    <!-- focus trap -->
+    <script type="module">
+      import { createFocusTrap, destroyFocusTrap } from './js/scripts.mjs';
+      const dialog = document.getElementById('my-dialog');
+      const trapSwitch = document.getElementById('focus-trap-switch');
+      trapSwitch.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          createFocusTrap(dialog);
+        } else {
+          destroyFocusTrap(dialog);
+        }
+      })
+    </script>
+    <!-- end of focus trap -->
+  </head>
+  <body>
+    <main>
+      <h1>Modern dialog</h1>
+      <p>
+        In 2023, to show modal dialog, you do not need any fancy framework or library, nor do you need to install an ugly NPM package! Everything is already in the
+        <a href="https://html.spec.whatwg.org/#the-dialog-element">HTML5 standard</a>
+        and <a href="https://caniuse.com/dialog">well supported by browsers</a>.  Moreover, you can make beautiful animated dialog with only a single line of JavaScript code:
+        <code>HTMLDialogElement.showModal()</code>
+      </p>
+      <div class="actions">
+        <button onclick="document.getElementById('my-dialog').showModal();">
+          Show dialog
+        </button>
+        <a href="https://github.com/dknight">Source</a>
+      </div>
+    </main>
+
+    <!-- Usually dialogs are outside of main. But this is not mandatory. -->
+    <dialog id="my-dialog">
+      <h2>Hello, dialog!</h2>
+      <p>
+        When <code>&lt;dialog&gt;</code> opens, the first element is focused. You can use the <a href="https://html.spec.whatwg.org/#the-autofocus-attribute">autofocus</a> attribute to force focus on any focusable element. There is a great <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog">article on MDN</a> about <code>&lt;dialog&gt;</code> element.
+      </p>
+
+      <p>
+        Here is a small script to trap focus inside dialog. The script is very simple and doesn't cover edge cases.
+      </p>
+
+      <input type="checkbox" id="focus-trap-switch">
+      <label for="focus-trap-switch">Focus trap</label>
+
+      <form method="dialog">
+        <button aria-label="Close dialog">&times;</button>
+      </form>
+    </dialog>
+  </body>
+</html>

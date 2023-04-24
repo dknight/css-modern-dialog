@@ -1,0 +1,65 @@
+/*
+  Dialog related styles.
+*/
+dialog {
+  border: none;
+  max-width: 30em;
+  min-width: 20em;
+  border-radius: 0.625em;
+  padding: 0 2em 2em 2em;
+
+  transform: scale(0.7);
+  opacity: 0;
+
+  animation: show-dialog .25s cubic-bezier(.25,.1,.35,1.5) forwards;
+}
+dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, .24);
+  /* Safari */
+  -webkit-backdrop-filter: blur(5px) contrast(.91) brightness(.83);
+  backdrop-filter: blur(5px) contrast(.91) brightness(.83);
+}
+dialog h2 {
+  margin: 0;
+}
+dialog form {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 -2em;
+  order: -1;
+}
+dialog form button {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+
+  transform: translate(-.2em, .2em);
+
+  font-size: 2em;
+
+  background: none;
+  cursor: pointer;
+
+  transition: 1s transform;
+}
+
+dialog form button::before {
+  transform: translate(50%, 30%) rotate(-45deg);
+}
+
+dialog form button:hover {
+  background-color: #efefef;
+}
+
+@keyframes show-dialog {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
