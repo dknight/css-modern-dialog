@@ -38,15 +38,12 @@ dialog form button {
   border-radius: 50%;
   border: none;
   padding: 0;
-
-  transform: translate(-.2em, .2em);
+  margin: .2em .2em 0 0;
 
   font-size: 2em;
 
   background: none;
   cursor: pointer;
-
-  transition: 1s transform;
 }
 
 dialog form button::before {
