@@ -100,7 +100,6 @@ input[type="checkbox"] {
 input[type="checkbox"] + label {
   display: inline-flex;
   align-items: center;
-  margin-right: 1em;
 }
 input[type="checkbox"]:focus-visible + label::before {
   outline: 2px solid blue;

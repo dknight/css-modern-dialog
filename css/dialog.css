@@ -54,6 +54,12 @@ dialog form button:hover {
   background-color: #efefef;
 }
 
+dialog .switches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 @keyframes show-dialog {
   to {
     opacity: 1;
