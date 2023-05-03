@@ -18,13 +18,19 @@
       import { createFocusTrap, destroyFocusTrap } from './js/scripts.js';
       const dialog = document.getElementById('my-dialog');
       const trapSwitch = document.getElementById('focus-trap-switch');
+      const escapeSwitch = document.getElementById('disable-escape-switch');
       trapSwitch.addEventListener('change', (e) => {
         if (e.target.checked) {
           createFocusTrap(dialog);
         } else {
           destroyFocusTrap(dialog);
         }
-      })
+      });
+      dialog.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && escapeSwitch.checked) {
+          e.preventDefault();
+        }
+      });
     </script>
     <!-- end of focus trap -->
 
@@ -60,8 +66,10 @@
     <dialog id="my-dialog">
       <h2>Hello, dialog!</h2>
       <p>
-        When <code>&lt;dialog&gt;</code> opens, the first element is focused. You can use the <a href="https://html.spec.whatwg.org/#the-autofocus-attribute">autofocus</a> attribute to force focus on any
-        focusable element. There is a great <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog">article on MDN</a> about
+        When <code>&lt;dialog&gt;</code> opens, the first element is focused. You can use the <a
+          href="https://html.spec.whatwg.org/#the-autofocus-attribute">autofocus</a> attribute to force focus on any
+        focusable element. There is a great <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog">article on MDN</a> about
         <code>&lt;dialog&gt;</code> element.
       </p>
 
@@ -69,9 +77,13 @@
         Here is a small script to trap focus inside dialog. The script is very simple and doesn't cover edge cases.
       </p>
 
-      <input type="checkbox" id="focus-trap-switch">
-      <label for="focus-trap-switch">Focus trap</label>
+      <div>
+        <input type="checkbox" id="focus-trap-switch">
+        <label for="focus-trap-switch">Focus trap</label>
 
+        <input type="checkbox" id="disable-escape-switch">
+        <label for="disable-escape-switch">Disable Escape</label>
+      </div>
       <form method="dialog">
         <button aria-label="Close dialog">&times;</button>
       </form>
