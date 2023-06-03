@@ -31,8 +31,8 @@
       closeSwitch.addEventListener('change', (e) => {
         closeButton.disabled = e.target.checked;
       });
-      dialog.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && escapeSwitch.checked) {
+      dialog.addEventListener('cancel', (e) => {
+        if (escapeSwitch.checked) {
           e.preventDefault();
         }
       });
