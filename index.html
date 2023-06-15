@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dialog.css">
 
-    <!-- focus trap -->
-    <script type="module">
-      import { createFocusTrap, destroyFocusTrap } from './js/scripts.js';
-      const closeButton = document.getElementById('close-dialog-btn');
-      const dialog = document.getElementById('my-dialog');
-      const trapSwitch = document.getElementById('focus-trap-switch');
-      const escapeSwitch = document.getElementById('disable-escape-switch');
-      const closeSwitch = document.getElementById('disable-close-switch');
-      trapSwitch.addEventListener('change', (e) => {
-        if (e.target.checked) {
-          createFocusTrap(dialog);
-        } else {
-          destroyFocusTrap(dialog);
-        }
-      });
-      closeSwitch.addEventListener('change', (e) => {
-        closeButton.disabled = e.target.checked;
-      });
-      dialog.addEventListener('cancel', (e) => {
-        if (escapeSwitch.checked) {
-          e.preventDefault();
-        }
-      });
-    </script>
-    <!-- end of focus trap -->
+    <!-- Check the source to see how it works. -->
+    <script type="module" src="js/scripts.js"></script>
   </head>
   <body>
     <main>
@@ -83,9 +60,12 @@
         <input type="checkbox" id="disable-close-switch">
         <label for="disable-close-switch">Disable close button</label>
       </div>
-      <form method="dialog">
-        <button aria-label="Close dialog" id="close-dialog-btn">&times;</button>
-      </form>
+      <!-- close event isn't cancelable, so we cannot animate backdrop yet-->
+      <!-- <form method="dialog"> -->
+      <div class="form">
+        <button aria-label="Close dialog" class="close-button" id="close-dialog-btn">&times;</button>
+      </div>
+      <!-- </form> -->
     </dialog>
   </body>
 </html>
